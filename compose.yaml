@@ -1,0 +1,27 @@
+services:
+  besu-validator:
+    image: hyperledger/besu:26.11.0
+    container_name: besu-asset-transfer-poc
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8545:8545"
+    volumes:
+      - ./genesis.json:/config/genesis.json:ro
+      - ./keys/nodekey:/keys/nodekey:ro
+      - ./data:/data
+    environment:
+      JAVA_OPTS: "-Xms128m -Xmx512m"
+    command:
+      - --genesis-file=/config/genesis.json
+      - --data-path=/data
+      - --node-private-key-file=/keys/nodekey
+      - --rpc-http-enabled=true
+      - --rpc-http-host=0.0.0.0
+      - --rpc-http-api=ETH,NET,WEB3,TXPOOL
+      - --p2p-enabled=true
+      - --p2p-host=0.0.0.0
+      - --p2p-port=30303
+      - --min-gas-price=0
+      - --host-allowlist=localhost,127.0.0.1
+    cpus: 1.0
+    mem_limit: 768m

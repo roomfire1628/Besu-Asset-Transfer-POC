@@ -1,0 +1,34 @@
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.keystore
+*.signed-tx.json
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+
+# JavaScript
+node_modules/
+dist/
+build/
+
+# Besu blockchain data
+data/
+data-lean/
+networkFiles/
+keys/
+nodekey
+nodekey.pub
+
+# System files
+.DS_Store.env
+.venv/
+node_modules/
+__pycache__/
+*.py[cod]
+*.signed-tx.json
